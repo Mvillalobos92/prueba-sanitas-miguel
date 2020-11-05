@@ -41,7 +41,6 @@ public class CalculadoraController {
     public BigDecimal calcular(@RequestParam("operacion") final String operacion,
             @RequestParam("numero1") final Double numero1, @RequestParam("numero2") final Double numero2) {
         return this.calculadoraService.calcular(operacion, numero1, numero2);
-
     }
 
 }

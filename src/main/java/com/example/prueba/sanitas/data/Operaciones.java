@@ -50,7 +50,7 @@ public enum Operaciones {
             }
         }
 
-        throw new RuntimeException("La operación " + valor + " no esta implementada por el momento");
+        throw new RuntimeException("La operación " + valor + " no está implementada por el momento.");
     }
 
 }

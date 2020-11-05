@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.prueba.sanitas.data.Operaciones;
 
+import io.corp.calculator.TracerImpl;
+
 /**
  * @author miguel.villalobosbre
  *
@@ -27,6 +29,8 @@ public class CalculadoraService implements ICalculadoraService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CalculadoraService.class);
 
+    private final TracerImpl tracerImpl = new TracerImpl();
+
     /*
      * (non-Javadoc)
      *
@@ -35,22 +39,39 @@ public class CalculadoraService implements ICalculadoraService {
      */
     @Override
     public BigDecimal calcular(final String operacion, final Double numero1, final Double numero2) {
+
+        if ((numero1 == null) || (numero2 == null) || (operacion == null)) {
+            throw new RuntimeException(
+                    "Por favor, revisa los parámetros de entrada, uno de los datos no viene informado.");
+        }
+
+        BigDecimal resultado = null;
         final Operaciones op = Operaciones.obtenerOperacionDesdeValor(operacion);
+
         switch (op) {
         case SUMA:
-            return CalculadoraService.suma(numero1, numero2);
+            resultado = CalculadoraService.suma(numero1, numero2);
+            break;
         case RESTA:
-            return CalculadoraService.resta(numero1, numero2);
+            resultado = CalculadoraService.resta(numero1, numero2);
+            break;
         case MULTIPLICACION:
-            return CalculadoraService.multiplicacion(numero1, numero2);
+            resultado = CalculadoraService.multiplicacion(numero1, numero2);
+            break;
         case DIVISION:
-            return CalculadoraService.division(numero1, numero2);
+            resultado = CalculadoraService.division(numero1, numero2);
+            break;
 
         default:
-            LOGGER.error("La operación no esta implementada.Puede estar disponible proximamente");
-            throw new RuntimeException(
-                    "La operación " + operacion.toString() + " no esta implementada por el momento.");
+            LOGGER.error("La operación no esta implementada.Puede que proximamente esté disponible.");
+            throw new RuntimeException("La operación " + operacion.toString()
+                    + "  no esta implementada.Puede que proximamente esté disponible.");
         }
+
+        this.tracerImpl.trace(resultado);
+
+        return resultado;
+
     }
 
     private static BigDecimal suma(final Double numero1, final Double numero2) {
