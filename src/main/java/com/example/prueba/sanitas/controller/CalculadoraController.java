@@ -37,6 +37,12 @@ public class CalculadoraController {
         this.calculadoraService = calculadoraService;
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see com.example.prueba.sanitas.controller.ICalculadoraController#calcular(java.lang.String, java.lang.Double,
+     * java.lang.Double)
+     */
     @GetMapping(value = "/calcular")
     public BigDecimal calcular(@RequestParam("operacion") final String operacion,
             @RequestParam("numero1") final Double numero1, @RequestParam("numero2") final Double numero2) {

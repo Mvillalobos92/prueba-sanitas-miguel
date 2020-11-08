@@ -17,6 +17,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.example.prueba.sanitas.data.Operaciones;
+import com.example.prueba.sanitas.exception.OperacionException;
+import com.example.prueba.sanitas.exception.ParametersException;
 
 import io.corp.calculator.TracerImpl;
 
@@ -40,9 +42,8 @@ public class CalculadoraService implements ICalculadoraService {
     @Override
     public BigDecimal calcular(final String operacion, final Double numero1, final Double numero2) {
 
-        if ((numero1 == null) || (numero2 == null) || (operacion == null)) {
-            throw new RuntimeException(
-                    "Por favor, revisa los parámetros de entrada, uno de los datos no viene informado.");
+        if ((numero1 == null) || (numero2 == null) || (operacion.isEmpty())) {
+            throw new ParametersException();
         }
 
         BigDecimal resultado = null;
@@ -63,9 +64,7 @@ public class CalculadoraService implements ICalculadoraService {
             break;
 
         default:
-            LOGGER.error("La operación no esta implementada.Puede que proximamente esté disponible.");
-            throw new RuntimeException("La operación " + operacion.toString()
-                    + "  no esta implementada.Puede que proximamente esté disponible.");
+            throw new OperacionException();
         }
 
         this.tracerImpl.trace(resultado);
