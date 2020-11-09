@@ -13,9 +13,12 @@ Para poder ejecutar dicho proyecto hay que:
 -Abrir el proyecto en Eclipse(u otro IDE) como Proyecto Maven(Import-->Existing Maven Project)
 -Hacer update de las dependencias del proyecto(Click derecho sobre el proyecto-->Maven-->Update Project)
 -Ejecutar el comando 'Maven  clean install'
+-Si no se ha realizado la compilación correctamente, deberíamos volver a realizar un update project y un refresh sobre el proyecto.
 -Si ha terminado de manera satifactoria,segundo botón sobre el proyecto-->Run As-->SpringBoot App
 
 Listo!Con esto deberias tener la aplicación corriendo en el puerto 8080
+
+
 
 Los parámetros que se le pasan al servicio son :
 -numero1
@@ -28,5 +31,7 @@ Para ejecutar los test podríamos volver al CMD y realizar el comando : comando 
 Se ha utilizado Swagger para la documentación del servicio.Una vez levantado el servicio,se puede acceder a la URL http://localhost:8080/swagger-ui.html para ver la información del servicio expuesto.
 
 Se ha realizado un control de errores propio, para devolver un texto dando las razones de porque no ha podido realizarse la operación.
+
+En la capa de servicio se ha utilizado el patrón interfaz/implementación.
 
 
