@@ -14,10 +14,11 @@ import java.math.RoundingMode;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.prueba.sanitas.data.Operaciones;
-import com.example.prueba.sanitas.exception.OperacionException;
 import com.example.prueba.sanitas.exception.ParametersException;
 
 import io.corp.calculator.TracerImpl;
@@ -40,9 +41,10 @@ public class CalculadoraService implements ICalculadoraService {
      * java.lang.Double)
      */
     @Override
-    public BigDecimal calcular(final String operacion, final Double numero1, final Double numero2) {
+    public ResponseEntity<BigDecimal> calcular(final String operacion, final Double numero1, final Double numero2) {
 
         if ((numero1 == null) || (numero2 == null) || (operacion.isEmpty())) {
+            // devolver un codigo de error
             throw new ParametersException();
         }
 
@@ -64,12 +66,12 @@ public class CalculadoraService implements ICalculadoraService {
             break;
 
         default:
-            throw new OperacionException();
+
         }
 
         this.tracerImpl.trace(resultado);
 
-        return resultado;
+        return new ResponseEntity<>(resultado, HttpStatus.OK);
 
     }
 

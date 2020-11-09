@@ -9,6 +9,8 @@
  */
 package com.example.prueba.sanitas.data;
 
+import com.example.prueba.sanitas.exception.OperacionException;
+
 /**
  * @author miguel.villalobosbre
  *
@@ -50,7 +52,7 @@ public enum Operaciones {
             }
         }
 
-        throw new RuntimeException("La operación " + valor + " no está implementada por el momento.");
+        throw new OperacionException(valor);
     }
 
 }

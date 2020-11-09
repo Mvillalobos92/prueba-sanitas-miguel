@@ -9,23 +9,38 @@
  */
 package com.example.prueba.sanitas.exception;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * @author miguel.villalobosbre
  *
  */
 @ControllerAdvice
-public class ControllerAdvisor extends ResponseEntityExceptionHandler {
+public class ControllerAdvisor {
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ParametersException.class)
-    public ResponseEntity<Object> handleCityNotFoundException(final ParametersException ex, final WebRequest request) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    @ResponseBody
+    public ErrorMessage parametersException(final HttpServletRequest request, final Exception exception) {
+        return new ErrorMessage(exception, request.getRequestURI());
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ErrorMessage genericError(final HttpServletRequest request, final Exception exception) {
+        return new ErrorMessage(exception, request.getRequestURI());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(OperacionException.class)
+    @ResponseBody
+    public ErrorMessage operationException(final HttpServletRequest request, final Exception exception) {
+        return new ErrorMessage(exception, request.getRequestURI());
     }
 
 }

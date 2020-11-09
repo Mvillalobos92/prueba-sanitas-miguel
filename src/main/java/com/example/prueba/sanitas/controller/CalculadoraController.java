@@ -12,12 +12,17 @@ package com.example.prueba.sanitas.controller;
 import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.prueba.sanitas.service.CalculadoraService;
+
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 /**
  * @author miguel.villalobosbre
@@ -44,7 +49,9 @@ public class CalculadoraController {
      * java.lang.Double)
      */
     @GetMapping(value = "/calcular")
-    public BigDecimal calcular(@RequestParam("operacion") final String operacion,
+    @ApiOperation(value = "Servicio calculadora", notes = "Servicio calculadora")
+    @ApiResponses({ @ApiResponse(code = 201, message = "Successful create of a info") })
+    public ResponseEntity<BigDecimal> calcular(@RequestParam("operacion") final String operacion,
             @RequestParam("numero1") final Double numero1, @RequestParam("numero2") final Double numero2) {
         return this.calculadoraService.calcular(operacion, numero1, numero2);
     }

@@ -17,8 +17,8 @@ public class OperacionException extends RuntimeException {
 
     private static final long serialVersionUID = 4122066365987725381L;
 
-    public OperacionException() {
-        super("ERROR:La operación no esta implementada.Puede que proximamente esté disponible");
+    public OperacionException(final String op) {
+        super("ERROR:La operación '" + op + "' no esta implementada.Puede que proximamente esté disponible");
     }
 
 }

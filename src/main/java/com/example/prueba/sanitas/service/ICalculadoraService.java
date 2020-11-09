@@ -11,12 +11,14 @@ package com.example.prueba.sanitas.service;
 
 import java.math.BigDecimal;
 
+import org.springframework.http.ResponseEntity;
+
 /**
  * @author miguel.villalobosbre
  *
  */
 public interface ICalculadoraService {
 
-    BigDecimal calcular(String operacion, Double numero1, Double numero2);
+    ResponseEntity<BigDecimal> calcular(String operacion, Double numero1, Double numero2);
 
 }
