@@ -10,14 +10,13 @@ Se ha integrado la libreria de tracer mediante el plugin maven-install-plugin.
 Para poder ejecutar dicho proyecto hay que:
 -Abrir un CMD y posicionarnos sobre la carpeta donde queremos guardar el proyecto
 -descargar el repositorio(git clone https://github.com/Mvillalobos92/prueba-sanitas-miguel.git)
--Abrir el proyecto en Eclipse(u otro IDE) como Proyecto Maven(Import-->Existing Maven Project)
--Hacer update de las dependencias del proyecto(Click derecho sobre el proyecto-->Maven-->Update Project)
--Ejecutar el comando 'Maven  clean install'
--Si no se ha realizado la compilación correctamente, deberíamos volver a realizar un update project y un refresh sobre el proyecto.
--Si ha terminado de manera satifactoria,segundo botón sobre el proyecto-->Run As-->SpringBoot App
-
+-mvn validate
+-mvn validate
+-mvn verify
+-mvn clean install
+Se debería haber generado una carpeta /target con el JAR que vamos a ejecutar.
+Si es asi, ahora deberíamos lanzar la aplicación con el siguiente comando : java -jar target/prueba.sanitas-0.0.1-SNAPSHOT.jar
 Listo!Con esto deberias tener la aplicación corriendo en el puerto 8080
-
 
 
 Los parámetros que se le pasan al servicio son :

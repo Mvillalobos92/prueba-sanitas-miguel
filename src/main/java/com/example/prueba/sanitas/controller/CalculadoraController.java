@@ -13,24 +13,16 @@ import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.prueba.sanitas.service.CalculadoraService;
-
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 
 /**
  * @author miguel.villalobosbre
  *
  */
 @RestController
-@RequestMapping(value = "/calculadora")
-public class CalculadoraController {
+public class CalculadoraController implements ICalculadoraController {
 
     private final CalculadoraService calculadoraService;
 
@@ -48,12 +40,10 @@ public class CalculadoraController {
      * @see com.example.prueba.sanitas.controller.ICalculadoraController#calcular(java.lang.String, java.lang.Double,
      * java.lang.Double)
      */
-    @GetMapping(value = "/calcular")
-    @ApiOperation(value = "Servicio calculadora", notes = "Servicio calculadora")
-    @ApiResponses({ @ApiResponse(code = 201, message = "Successful create of a info") })
-    public ResponseEntity<BigDecimal> calcular(@RequestParam("operacion") final String operacion,
-            @RequestParam("numero1") final Double numero1, @RequestParam("numero2") final Double numero2) {
+    @Override
+    public ResponseEntity<BigDecimal> calcular(final String operacion, final Double numero1, final Double numero2) {
         return this.calculadoraService.calcular(operacion, numero1, numero2);
+
     }
 
 }

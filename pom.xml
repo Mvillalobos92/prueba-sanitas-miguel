@@ -11,7 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>prueba.sanitas</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>prueba.sanitas</name>
 	<description>Prueba realizada por Miguel Villalobos para sanitas</description>
 
@@ -67,7 +67,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.1</version>
                 <configuration>
                     <groupId>com.iteriam</groupId>
                     <artifactId>tracer</artifactId>
