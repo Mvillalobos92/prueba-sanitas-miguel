@@ -23,7 +23,7 @@ Los parámetros que se le pasan al servicio son :
 -numero1
 -numero2
 -operacion
-Es un método de tipoGET (http://localhost:8080/calculadora/calcular?numero1=2.5651115545&numero2=2&operacion=suma) 
+Es un método de tipo GET (http://localhost:8080/calculadora/calcular?numero1=2.5651115545&numero2=2&operacion=suma) 
 
 Para ejecutar los test podríamos volver al CMD y realizar el comando : comando mvn clean test.
 
